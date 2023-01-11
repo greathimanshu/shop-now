@@ -84,7 +84,7 @@
                           </div>
 
                           <div class="row">
-                            {{-- <div class="col-6 p-2">
+                            {{-- <div class="col-5 p-2">
                               <div class="form-group">
                                 <label for="exampleInputName1">Poster<span class="text-danger"></span></label>
                                 <select name="poster" class="form-control" id="select_company">
