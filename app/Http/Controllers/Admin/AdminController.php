@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
@@ -7,12 +8,13 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
-class AdminController extends Controller{
+class AdminController extends Controller
+{
 
     public function __construct()
     {
     }
-    
+
     public function dashboard(Request $request)
     {
         return view('merchant.dashboard');
@@ -20,11 +22,11 @@ class AdminController extends Controller{
 
     public function login(Request $request)
     {
-        
+
         $data = [];
 
         if ($request->isMethod('post')) {
-            
+
             $checkUser = User::webLogin($request->all());
 
             if (!isset($checkUser['user'])) {
@@ -32,7 +34,7 @@ class AdminController extends Controller{
 
                 return redirect()->route('login')->with('error', $message);
             }
-            
+
             if (!(Auth::user()->hasRole('merchant'))) {
                 return redirect()->route('login')->with('error', "Invalid credentials");
             }
@@ -44,12 +46,12 @@ class AdminController extends Controller{
     }
 
     public function logout(Request $request)
-    {   
+    {
         Auth::logout();
         return redirect('/');
     }
 
-    
+
     public function register(Request $request)
     {
 
@@ -65,16 +67,14 @@ class AdminController extends Controller{
             'password' => 'required',
             'confirm_password' => 'required|same:password',
         ]);
-        
+
         $user = new User();
         $user->name = $request->fullname;
         $user->email = $request->email;
         $user->password = Hash::make($request->password);
         $user->save();
         $user->assignRole('merchant');
-        
-        return redirect()->route('login');
-        
-    }
 
+        return redirect()->route('login');
+    }
 }
