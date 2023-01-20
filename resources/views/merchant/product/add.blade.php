@@ -50,7 +50,7 @@
                           <div class="row">
                             <div class="col-6 p-2">
                               <div class="form-group">
-                                  <label for="exampleInputName1">Address<span class="text-danger">*</span></label>
+                                  <label for="exampleInputName1">Description<span class="text-danger">*</span></label>
                                   <input type="text" name="address" class="form-control"  value={{ old('address') }}>
                                   @if($errors->has('address'))
                                     <p class="text-danger">
@@ -84,13 +84,13 @@
                           </div>
 
                           <div class="row">
-                            {{-- <div class="col-5 p-2">
+                            <div class="col-6 p-2">
                               <div class="form-group">
-                                <label for="exampleInputName1">Poster<span class="text-danger"></span></label>
-                                <select name="poster" class="form-control" id="select_company">
-                                  <option value="">Select Poster</option>
-                                  @foreach ($posters as $poster)
-                                    <option value={{ $poster->id }} @if ($poster->id == isset($data->poster[0]['id']))selected else @endif>{{ $poster->first_name."". $poster->last_name}}</option>
+                                <label for="exampleInputName1">Category<span class="text-danger"></span></label>
+                                <select name="category" class="form-control" id="select_company">
+                                  <option value="">Select Category</option>
+                                  @foreach ($categorys as $category)
+                                    <option value={{ $category->id }}>{{ $category['name']}}</option>
                                   @endforeach
                                 </select>
                                 @if($errors->has('poster'))
@@ -99,18 +99,18 @@
                                     </p>
                                   @endif
                               </div>
-                            </div> --}}
-                            <div class="col-6 p-2">
+                            </div>
+                            {{-- <div class="col-6 p-2">
                               <div class="form-group">
-                                  <label for="exampleInputName1">Description<span class="text-danger">*</span></label>
-                                  <input type="text" name="description" class="form-control" value={{ old('description') }}>
-                                  @if($errors->has('description'))
+                                  <label for="exampleInputName1">Category<span class="text-danger">*</span></label>
+                                  <input type="text" name="category" class="form-control" value={{ old('category') }}>
+                                  @if($errors->has('category'))
                                     <p class="text-danger">
-                                        {{ $errors->first('description');}}
+                                        {{ $errors->first('category');}}
                                     </p>
                                   @endif
                               </div>
-                            </div>
+                            </div> --}}
                             <div class="col-6 p-2">
                               <div class="form-group">
                                   <label for="exampleInputName1">Description<span class="text-danger">*</span></label>
@@ -127,9 +127,9 @@
                           <div class="row">
                             <div class="col-6 p-2">
                               <div class="form-group">
-                                <label for="exampleInputName1">Date<span class="text-danger">*</span></label>
-                                <input type="date" name="date" class="form-control" value={{ old('date') }} >
-                                @if($errors->has('date'))
+                                <label for="exampleInputName1">Discount<span class="text-danger">*</span></label>
+                                <input type="text" name="discount" class="form-control" value={{ old('discount') }} >
+                                @if($errors->has('discount'))
                                   <p class="text-danger">
                                       {{ $errors->first('date');}}
                                   </p>
@@ -145,32 +145,6 @@
                                       {{ $errors->first('date');}}
                                   </p>
                                 @endif
-                            </div>
-                            </div>
-                          </div>
-                          <div class="row">
-                            <div class="col-6 p-2">
-                              <div class="form-group">
-                                  <label for="exampleInputName1">longitude</label>
-                                  <input type="text" name="longitude" class="form-control" value={{old('longitude')}} >
-                                  @if($errors->has('longitude'))
-                                    <p class="text-danger">
-                                        {{ $errors->first('longitude');}}
-                                    </p>
-                                  @endif
-                              </div>
-                            </div>
-                            <div class="col-6 p-2">
-                            <div class="col-6 p-2">
-                              <div class="form-group">
-                                  <label for="exampleInputName1">latitude</label>
-                                  <input type="text" name="latitude" class="form-control" value={{ old('latitude') }}>
-                                  @if($errors->has('latitude'))
-                                    <p class="text-danger">
-                                        {{ $errors->first('latitude');}}
-                                    </p>
-                                  @endif
-                              </div>
                             </div>
                             </div>
                           </div>

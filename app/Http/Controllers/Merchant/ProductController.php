@@ -2,6 +2,7 @@
 namespace App\Http\Controllers\Merchant;
 
 use App\Http\Controllers\Controller;
+use App\Models\Category;
 use App\Models\Product;
 
 class ProductController extends Controller{
@@ -18,7 +19,8 @@ class ProductController extends Controller{
 
         $data = [];
         $data['page_title'] = 'Add Product';
+        $categorys = Category::where('status', 'active')->get();
         
-        return view('merchant.product.add')->with(compact('data'));
+        return view('merchant.product.add')->with(compact('data', 'categorys'));
     }
 }

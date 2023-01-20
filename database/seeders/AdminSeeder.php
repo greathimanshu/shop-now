@@ -15,9 +15,9 @@ class AdminSeeder extends Seeder
      */
     public function run()
     {
-        $admin = User::firstOrNew(['email' =>  'info@opayl.com']);
+        $admin = User::firstOrNew(['email' =>  'admin@admin.com']);
         $admin->name = 'admin';
-        $admin->email = 'info@opayl.com';
+        $admin->email = 'admin@admin.com';
         $admin->password = Hash::make('123456');
         $admin->email_verified_at = date('Y-m-d H:i:s', strtotime('now'));
         $admin->save();
