@@ -43,7 +43,7 @@ if (!function_exists('validation_error_response')) {
 
         $response['message'] = $errorMessage;
         $response['success'] = FALSE;
-        $response['status'] = STATUS_OK;
+        $response['status'] = 200;
         return $response;
     }
 }
@@ -635,29 +635,28 @@ if (!function_exists('emailExist')) {
     }
 }
 
-if (! function_exists('pr')) {
+if (!function_exists('pr')) {
 
     function pr(...$vars)
     {
-        echo "<pre>"; 
+        echo "<pre>";
 
-        foreach($vars as $var)
-        {
-            print_r($var); 
+        foreach ($vars as $var) {
+            print_r($var);
         }
 
         echo "</pre>";
     }
 }
 
-if (! function_exists('prx')) {
+if (!function_exists('prx')) {
 
     function prx(...$vars)
-    {   
+    {
         echo "<pre>";
 
-        foreach($vars as $var) {
-             print_r($var); 
+        foreach ($vars as $var) {
+            print_r($var);
         }
 
         echo "</pre>";
@@ -666,23 +665,25 @@ if (! function_exists('prx')) {
     }
 }
 
-if (! function_exists('ine')) {
+if (!function_exists('ine')) {
 
     function ine(array $haystack, $needle)
-    {   
-        if(isset($haystack[$needle]) && !empty($haystack[$needle])) {
+    {
+        if (isset($haystack[$needle]) && !empty($haystack[$needle])) {
             return true;
         }
         return false;
     }
 }
 
-if (! function_exists('ine_get')) {
+if (!function_exists('ine_get')) {
     function ine_get($haystack, $needle)
     {
-        if(is_array($haystack)
+        if (
+            is_array($haystack)
             && isset($haystack[$needle])
-            && !empty($haystack[$needle])) {
+            && !empty($haystack[$needle])
+        ) {
             return $haystack[$needle];
         }
         return NULL;

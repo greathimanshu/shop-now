@@ -9,4 +9,12 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class ProductImage extends Model
 {
     use HasFactory, SoftDeletes;
+
+    public function getImageAttribute($value = '')
+    {
+        if (!empty($value)) {
+            return asset('/uploads/product/' . $value);
+        }
+        return asset('/merchant/images/noImage.png');
+    }
 }

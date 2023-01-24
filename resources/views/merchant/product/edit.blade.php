@@ -1,5 +1,5 @@
 @extends('layouts.merchant.master')
-@section('title', 'Product')
+@section('title', 'Edit-Product')
 
 @section('content')
 
@@ -11,7 +11,7 @@
           <div class="card">
             <div class="card-body">
               <div class="d-flex justify-content-between align-items-center">
-                <span class="font-weight-bold">Add Product</span>
+                <span class="font-weight-bold">Edir Product</span>
                 <a href={{ url('products') }} class="btn btn-primary">
                   <i class="mdi mdi-arrow-left-bold"></i> Back
                 </a>
@@ -26,7 +26,7 @@
                             <div class="col-6 p-2">
                               <div class="form-group">
                                   <label for="exampleInputName1">Name<span class="text-danger">*</span></label>
-                                  <input type="text" name="name"  class="form-control"  rows="4" value={{ old('name') }} >
+                                  <input type="text" name="name"  class="form-control"  rows="4" value={{ $data['name'] }} >
                                   @if($errors->has('name'))
                                     <p class="text-danger">
                                         {{ $errors->first('name');}}
@@ -37,7 +37,7 @@
                             <div class="col-6 p-2">
                               <div class="form-group">
                                   <label for="exampleInputName1">Cost<span class="text-danger">*</span></label>
-                                  <input type="text" name="cost" class="form-control" value={{ old('cost') }}>
+                                  <input type="text" name="cost" class="form-control" value={{ $data['cost'] }}>
                                   @if($errors->has('cost'))
                                     <p class="text-danger">
                                         {{ $errors->first('cost');}}
@@ -51,7 +51,7 @@
                             <div class="col-6 p-2">
                               <div class="form-group">
                                   <label for="exampleInputName1">Description<span class="text-danger">*</span></label>
-                                  <input type="text" name="description" class="form-control"  value={{ old('description') }}>
+                                  <input type="text" name="description" class="form-control"  value={{ $data['description'] }}>
                                   @if($errors->has('description'))
                                     <p class="text-danger">
                                         {{ $errors->first('description');}}
@@ -63,9 +63,9 @@
                               <div class="form-group">
                                 <label for="exampleInputName1">Category<span class="text-danger"></span></label>
                                 <select name="category" class="form-control" id="select_company">
-                                  <option value="">Select Category</option>
+                                  <option value={{$data['category']['name']}}>Select Category</option>
                                   @foreach ($categorys as $category)
-                                    <option value={{ $category->id }}>{{ $category['name']}}</option>
+                                    <option value={{$category->id }}>{{ $category['name']}}</option>
                                   @endforeach
                                 </select>
                                 @if($errors->has('category'))
@@ -80,7 +80,7 @@
                             <div class="col-6 p-2">
                               <div class="form-group">
                                 <label for="exampleInputName1">Discount<span class="text-danger">*</span></label>
-                                <input type="text" name="discount" class="form-control" value={{ old('discount') }} >
+                                <input type="text" name="discount" class="form-control" value={{ $data['discount'] }} >
                                 @if($errors->has('discount'))
                                   <p class="text-danger">
                                       {{ $errors->first('date');}}
@@ -91,7 +91,7 @@
                             <div class="col-6 p-2">
                               <div class="form-group">
                                 <label for="exampleInputName1">Quantity<span class="text-danger">*</span></label>
-                                <input type="text" name="quantity" class="form-control" value={{ old('quantity') }} >
+                                <input type="text" name="quantity" class="form-control" value={{ $data['quantity'] }} >
                                 @if($errors->has('quantity'))
                                   <p class="text-danger">
                                       {{ $errors->first('quantity');}}

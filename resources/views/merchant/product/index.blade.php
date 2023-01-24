@@ -66,7 +66,9 @@
                             <tr class="">
                                 <th>#</th>
                                 <th>Image</th>
+                                <th>Name</th>
                                 <th>Category name</th>
+                                <th>Cost</th>
                                 <th>Status</th>
                                 <th>Created at</th>
                                 <th>Action</th>
@@ -80,18 +82,19 @@
                             <tr>
                                 <td>{{ $firstItemIndex++ }}</td>
                                 
-                                <td><img src="{{$value['image'] ??  asset('images') . '/noimage.jpeg'}}" alt="profile"
+                                <td><img src={{$value['category']['image']}} alt="profile"
                                     style="height: 40px; width: 40px;  border-radius: 20px;">
                                 </td>
-                                <td>{{ $value['category_name'] ?? '' }}</td>
+                                <td>{{ $value['name'] ?? '' }}</td>
+                                <td>{{ $value['category']['name'] ?? '' }}</td>
+                                <td>{{ $value['cost'] ?? '' }}</td>
                                 <td>{{ $value['status'] ?? '' }}</td>
                                 <td>{{
                                     date('Y-m-d h:m A',strtotime($value['created_at']))
                                     }}</td>
                                 <td>
                                     <div class="icons">
-                                        <a href={{route('status-category',
-                                            [$value['id']])}}
+                                        <a href=""
                                             class="btn btn-sm btn-"
                                             data-toggle="tooltip"
                                             data-placement="top"
@@ -109,29 +112,15 @@
                                             @endif
                                         </a>
                                        
-                                        <a href={{route('edit-category',
-                                            [$value['id']])}}
+                                        <a href={{route('edit-product',
+                                            $value['id'])}}
                                             class="btn btn-sm btn-primary"
                                             data-toggle="tooltip"
                                             data-placement="top"
                                             title="edit job">
                                             <i class="icon-pencil"></i>
                                         </a>
-                                        {{-- <form id="myFormId{{$value['id']}}"
-                                            action="{{ route('delete.category',[$value['id']]) }}"
-                                            method="POST"
-                                            style="display:inline-block">
-                                            @method('delete')
-                                            @csrf
-                                            <a type="submit" 
-                                                class="btn btn-sm btn-danger"
-                                                data-toggle="modal"
-                                                title="delete job"
-                                                data-target="#exampleModalCenter{{$value['id']}}">
-                                                <i
-                                                    class="icon-trash "></i></a>
-                                        </form> --}}
-                                        <!-- Modal -->
+                                                                                <!-- Modal -->
                                         <div class="modal fade" id="exampleModalCenter{{$value['id']}}"
                                             tabindex="-1" role="dialog"
                                             aria-labelledby="exampleModalCenter{{$value['id']}}Title"

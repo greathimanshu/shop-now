@@ -30,13 +30,14 @@ Route::match(['get', 'post'], '/login', [AdminController::class, 'login'])->name
 Route::get('register', [AdminController::class, 'register']);
 Route::post('register', [AdminController::class, 'store'])->name('register-user');
 
-Route::group(['middleware' => 'auth'], function() {
-    
+Route::group(['middleware' => 'auth'], function () {
+
     Route::get('/admin-logout', [AdminController::class, 'logout'])->name('merchant.logout');
     Route::get('dashboard', [MerChantController::class, 'dashboard'])->name('merchant-dashboard');
 
     //product
     Route::get('/products', [ProductController::class, 'index'])->name('products');
     Route::get('/create-product', [ProductController::class, 'create'])->name('create-product');
-
+    Route::post('/store-product', [ProductController::class, 'store'])->name('store-product');
+    Route::get('/edit-product/{id}', [ProductController::class, 'edit'])->name('edit-product');
 });
