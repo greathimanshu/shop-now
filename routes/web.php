@@ -5,7 +5,7 @@ use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Merchant\ProductController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
-
+use App\Http\Controllers\GoogleController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -30,6 +30,12 @@ Route::match(['get', 'post'], '/login', [AdminController::class, 'login'])->name
 Route::get('register', [AdminController::class, 'register']);
 Route::post('register', [AdminController::class, 'store'])->name('register-user');
 
+Route::controller(GoogleController::class)->group(function(){
+    Route::get('auth/google', 'redirectToGoogle')->name('auth.google');
+    Route::get('auth/google/callback', 'handleGoogleCallback');
+});
+
+
 Route::group(['middleware' => 'auth'], function () {
 
     Route::get('/admin-logout', [AdminController::class, 'logout'])->name('merchant.logout');
@@ -40,4 +46,5 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/create-product', [ProductController::class, 'create'])->name('create-product');
     Route::post('/store-product', [ProductController::class, 'store'])->name('store-product');
     Route::get('/edit-product/{id}', [ProductController::class, 'edit'])->name('edit-product');
+    Route::get('/show-product/{id}', [ProductController::class, 'show'])->name('show-product');
 });

@@ -15,7 +15,7 @@ class ProductController extends Controller
     public function index()
     {
 
-        $result = Product::with('category')->paginate(10);
+        $result = Product::with('category')->where('user_id', Auth::id())->paginate(10);
         return view('merchant.product.index', compact('result'));
     }
 
@@ -55,6 +55,12 @@ class ProductController extends Controller
             $product->category_id = $requestData['category'];
             $product->discount = $requestData['discount'] ?? null;
             $product->quantity = $requestData['quantity'] ?? null;
+
+            if(isset($requestData['discount'])){
+                $dis_rate =$requestData['cost'] - ($requestData['cost'] * ($requestData['discount']/100));
+                $product->discount_cost = $dis_rate;
+            }
+
             $product->save();
             return redirect()->route('products')->with('success', 'Product added successfully');
         } catch (\Exception $e) {
@@ -72,5 +78,15 @@ class ProductController extends Controller
         $categorys = Category::where('status', 'active')->get();
 
         return view('merchant.product.edit')->with(compact('data', 'categorys'));
+    }
+
+    public function show($id)
+    {
+        $data = [];
+        $data['page_title'] = 'Add Show';
+        $data = Product::where('id', $id)->first();
+        $categorys = Category::where('status', 'active')->get();
+
+        return view('merchant.product.detail')->with(compact('data', 'categorys'));
     }
 }
